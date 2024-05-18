@@ -1,9 +1,9 @@
 import axios from "axios"
 
 // export const apiUrl = 'http://localhost:8000'
-export const apiUrl = 'https://congapi.178765.xyz'
+export const apiUrl = process.env.REACT_APP_API_URL
 
-export const reCaptchaKey = '6Ldr4ucoAAAAAKwW2FX-bCJIo6YHztxzf97Y_Tl8'
+export const reCaptchaKey = process.env.REACT_APP_RECAPTCHA_KEY
 
 export const constConfig =
 {
