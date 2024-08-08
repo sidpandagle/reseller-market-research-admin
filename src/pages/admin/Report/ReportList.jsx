@@ -85,6 +85,15 @@ export default function ReportList() {
             });
     }
 
+    const downloadReports = async function () {
+        let link = document.createElement("a");
+        link.download = 'output.xlsx';
+        link.href = `${apiUrl}/reports/excel-report`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     return (
         <div>
             {/* <button type="submit" className="inline-flex items-center justify-center gap-4 px-6 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
@@ -98,13 +107,15 @@ export default function ReportList() {
                         </div>
                         <Link to='/report/add'>
                             <svg id="Capa_1" enableBackground="new 0 0 24 24" height={18} viewBox="0 0 24 24" width={18} xmlns="http://www.w3.org/2000/svg"><g id="_x33_"><path d="m18 2c2.206 0 4 1.794 4 4v12c0 2.206-1.794 4-4 4h-12c-2.206 0-4-1.794-4-4v-12c0-2.206 1.794-4 4-4zm0-2h-12c-3.314 0-6 2.686-6 6v12c0 3.314 2.686 6 6 6h12c3.314 0 6-2.686 6-6v-12c0-3.314-2.686-6-6-6z" /></g><g id="_x32_"><path d="m12 18c-.552 0-1-.447-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10c0 .553-.448 1-1 1z" /></g><g id="_x31_"><path d="m6 12c0-.552.447-1 1-1h10c.552 0 1 .448 1 1s-.448 1-1 1h-10c-.553 0-1-.448-1-1z" /></g></svg>
-
+                        </Link>
+                        <Link onClick={() => downloadReports()}>
+                            <img src="/download.svg" className='w-6 h-6' alt="download" />
                         </Link>
                     </div>
                     <div className='flex items-center gap-8 '>
 
                         <div className='flex items-center gap-2 p-2 border rounded-md border-slate-300'>
-                            <select name="cat" id="catid" value={categoryId} onChange={(e)=>setCategoryId(e.target.value)} className='outline-none w-60'>
+                            <select name="cat" id="catid" value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className='outline-none w-60'>
                                 <option value={0}>All</option>
                                 {categoryList.map((r, i) => {
                                     return <option key={i} value={r.id}>{r.name}</option>
